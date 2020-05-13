@@ -1,0 +1,40 @@
+{
+
+    // Use IntelliSense para saber los atributos posibles.
+    // Mantenga el puntero para ver las descripciones de los existentes atributos 
+    // Para más información, visite: https://go.microsoft.com/fwlink/?linkid=830387
+
+    // este es el archivo global para configurar el depurador para node
+    //esta configuracion es basica pero sirve para Javascript como para TypeScript
+    //Todo parece indicar que solo se puede tener UN TIPO de depurador por proyecto 
+    //asi que toca intercambiar entre las diferentes propiedades   program:   que aqui 
+    //estan escritas.
+    //RECORDAR: solo se puede tener una propiedad   program:  asi que se debe escoger 
+    //          si se desea depurar javascript o Typescript
+
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Dep Generico JS-TS",
+
+            //=====================================================
+            //aqui se determina que archivo js es la entrada de 
+            //depuracion (el archivo js inicial del programa)
+
+            // "program": "${workspaceFolder}/pruebas-general/mi-main.js"
+            //"program": "${workspaceFolder}/otro-main.js"
+
+            //=====================================================
+            //aqui se determina que archivo ts es la entrada de 
+            //depuracion (el archivo ts inicial del programa)
+            //RECORDAR: se debe activar    sourceMaps   al usar typescript
+
+            "program": "${workspaceFolder}/pruebas-general/src/mi-main.js",     
+            // "program": "${workspaceFolder}/otro-main.ts", 
+
+            "sourceMaps": true
+        }
+    ]
+}

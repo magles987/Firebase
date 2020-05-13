@@ -1,0 +1,22 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents{  
+     
+    match /Productos/{document=**}{
+     allow read: if (get(/databases/$(database)/documents/Roles/16f33b3cbe5-843048ceaa50d7e1).data.codigo == "invitado");
+     allow write;
+    }
+    
+    match /Roles/{document=**}{
+    	allow read: if false;
+      allow write: if false;
+    }
+    
+  	match /{document=**} {    	
+      allow read;
+      allow write;
+    }
+
+
+  }
+}

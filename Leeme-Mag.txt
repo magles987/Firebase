@@ -1,0 +1,159 @@
+████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+el super set de Firebase se debe configurar 
+de la siguiente manera para un proyecto nuevo:
+
+1. crear el proyecto y los servicios desde la 
+ consola de Firebase (Firebase es el nombre global
+ de la plataforma aun que los datos son almacenado 
+ en base de datos Firestore). parece ser que tambien 
+ se pueden crear estos proyectos aqui en terminal en 
+ la consola web de firebase es mas comodo y seguro (cuando
+ se tenga mas experiencia se podra usar la terminal)
+
+ 2.Si no se ha instalado el super set de Firebase en la PC 
+  o si ya se instalo y se requiere hacer un proyecto nuevo se
+  aconseja reinsitalar (para actualizar) el super set de 
+  herramientas de Firebase para lo cual se debe descargar 
+  de la siguiente web:  https://firebase.google.com/docs/cli?hl=es-419  
+  donde se incluye el instalador de CLI para windows, 
+  y la instalacion del paquete npm de firebase, el comoando de 
+  instalacion del paquete de npm puede ser ejecutado en la 
+  consola del instalador de CLI o en una terminal 
+  aparte UNA VEZ HAYA TERMINADO LA INSTALACION 
+  (o actualizacion del CLI)
+
+ 3. para crear un proyecto que se enlace a la consola de Firebase
+  se debe ubicar la terminal en el directorio donde se quiera  instalar
+  (normalmente debe ser un directorio por encima del proyecto front-end,
+  por ejemplo un directorio encima del directorio del proyecto de angular), 
+  luego se ejecuta el siguiente comando:
+
+firebase init
+
+  aparecera en la consola lo siguiente:
+
+      ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+R-> YES
+
+luego preguntara que servicios basicos de firebase quiere 
+(base de datos, hosting, cloud functions y demas) seleccionar 
+con espacio los que se desean (aconsejo todos, despues se 
+analizara si se usan o no).
+
+luego pregunta si se desea usar un proyecto existente?
+R-> Use an existing project  
+(si es que ya fue creado en la consolo de firebase)
+
+What file should be used for Database Rules?
+R-> dejar el nombre del archivo predefinido por el asistente
+
+What file should be used for Firestore Rules?
+R-> dejar el nombre del archivo predefinido por el asistente
+
+What language would you like to use to write Cloud Functions?
+R-> seleccionar Typescript
+
+Do you want to use TSLint to catch probable bugs and enforce style?
+R-> YES
+
+Do you want to install dependencies with npm now? 
+(son las dependencias para usar cloud functions)
+R->Yes
+
+What do you want to use as your public directory?
+R-> el predefinido
+
+Configure as a single-page app (rewrite all urls to /index.html)?
+R-> Yes
+
+What file should be used for Storage Rules?
+R->YES
+
+luego preguntara las opciones de Emulacion 
+por ahora escojo (Functions, Firestore, Database, Hosting)
+que son las mas utiles
+
+Which port do you want to use for the functions emulator?
+(puerto en el que se emulara)
+R->predefinido  5001
+
+Which port do you want to use for the firestore emulator?
+(puerto en el que se emulara firestore)
+R-> No usar el predefinido 8080 ya que es muy usado por otras aplicaciones
+prefiero usar el   9090
+
+Which port do you want to use for the database emulator?
+R-> como es la base de datos antigua puede ser 
+el puerto predefinido    9000
+
+Which port do you want to use for the hosting emulator?
+R-> el predefinido  5000
+
+
+Would you like to download the emulators now?
+(descargar los emuladores delas bases de datos 
+tanto Firebase como Firestore pesan casi 100Mb)
+R->YES
+
+Listo
+
+████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+Cloud Firestore:
+
+1. se pueden programar en el archivo ./functions/scr/index.ts
+
+2. existen 2 maneras de probarlas: local y desplegandolas 
+directamente en produccion (cada cual con sus pro y contras)
+
+3a.para desplegarlas directamente en la consolo de Firebase 
+se usa el comando
+
+firebase deploy --only functions
+(la flag --only indica que herramientas deseo desplegar solamente 
+(functions o hosting o Firestore database) deben ir separadas por  , )
+
+esto hace que todos los cambios suban a Firebase, y si las cloud functions 
+estan en Typescript este se encarga de transpilar, el problema es 
+que se demora si los cambios son grandes, ademas que se corre 
+el riesgo de que sea ya un ambiente de produccion y afecte a los clientes
+
+3b. para pruebas locales se usa el comando:
+
+firebase serve --only functions
+
+esto despliega un servidor local (normalmente con el puerto 5001), y al 
+cual se le puede realizar las mismas consultas como si fuera a la 
+consola de Firebase
+IMPORTANTE: como se usa Typescript para programarlas, de forma local 
+NO TRANSPILA el codigo automaticamente por lo tanto es necesario 
+usar el comando desde el directorio  ./functions
+
+npm run build
+
+cuando se compile el codigo se podra usar las cloud functions localmente
+
+IMPORTANTE:
+Siempre que se quieran hacer pruebas locales de cloud functions ellas siempre se 
+intentaran conectar al servidor de Firestore para descargar datos, es buena practica 
+reiniciar completamente los emuladores y si es posible desconectarse de internet para 
+forzar a que se realicen pruebas locales
+
+████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+Emulador de Firestore
+
+IMPORTANTE:
+Si se apga el emulador de firebase (o si se reinicia) se borran TODOS los documentos
+y colecciones
+
+████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+TODOS LOS EMULADORES
+para iniciar todos los emuladores se usa el comando:
+
+firebase emulators:strat
+

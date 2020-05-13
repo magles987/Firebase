@@ -1,0 +1,56 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "Productos",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "_id",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "map_miscelanea.ruedas",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "Productos",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "arrayNormal",
+          "arrayConfig": "CONTAINS"
+        },
+        {
+          "fieldPath": "arrayNormal",
+          "order": "ASCENDING"
+        }
+      ]
+    }
+  ],
+  "fieldOverrides": [
+    {
+      "collectionGroup": "subColeccion",
+      "fieldPath": "_id",
+      "indexes": [
+        {
+          "order": "ASCENDING",
+          "queryScope": "COLLECTION"
+        },
+        {
+          "order": "DESCENDING",
+          "queryScope": "COLLECTION"
+        },
+        {
+          "arrayConfig": "CONTAINS",
+          "queryScope": "COLLECTION"
+        },
+        {
+          "order": "ASCENDING",
+          "queryScope": "COLLECTION_GROUP"
+        }
+      ]
+    }
+  ]
+}

@@ -140,9 +140,21 @@ cuando se compile el codigo se podra usar las cloud functions localmente
 
 IMPORTANTE:
 Siempre que se quieran hacer pruebas locales de cloud functions ellas siempre se 
-intentaran conectar al servidor de Firestore para descargar datos, es buena practica 
-reiniciar completamente los emuladores y si es posible desconectarse de internet para 
-forzar a que se realicen pruebas locales
+intentaran conectar al servidor de Firestore para descargar datos, si realmente 
+se desea este comportamiento se debe contar con las credenciales de acceso que 
+asigna firebase para conectar las cloud functions locales a su servidor de 
+firestore, las credenciales so obtienen en la pagina (de acuerdo al proyecto):  
+
+https://console.firebase.google.com/project/prueba1-87d2f/settings/serviceaccounts/adminsdk  
+
+las cuales son entregadas en un archivo .json que en mi caso ubico en la raiz 
+del proyecto con el nombre prueba1-87d2f-firebase-adminsdk-byfgp-89fbc2979a.json  
+este debe requerirse y configurarse en el archivo index.ts del diretorio 
+functions/scr/index.ts en la configuracion de app  
+
+pero si no se desea conectarse a la base de datos de firestore su servidor 
+es buena practica reiniciar completamente los emuladores y si es posible 
+desconectarse de internet para forzar a que se realicen pruebas locales
 
 ████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████
 Emulador de Firestore

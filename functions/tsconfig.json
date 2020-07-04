@@ -1,13 +1,20 @@
 {
+  //el CLI de firebase establece una configuracion especial para el manejo 
+  //de cloud functions con typescript, activa varias banderas que restringen 
+  //demasiado el acople con archivos .ts construidos en otros proyectos y 
+  //que se quieran reutilizar o llamar desde el index.ts de las functions, 
+  //por ahora se comentan dichas banderas sin emabargo aun no se han hecho
+  // suficiendes deploys para saber si eso generará problemas de 
+  //incompatibilidad 
   "compilerOptions": {
     "module": "commonjs",
-    // "noImplicitReturns": true,
-    // "noUnusedLocals": true,
+    //"noImplicitReturns": true, //bloqueo a funciones con return vacio
+    //"noUnusedLocals": true, //bloqueo a variables que se declaren pero no se les asigne ningun valor
     "outDir": "lib",
     "sourceMap": true,
-    //"strict": true,
-    "lib": ["es2015", "es2016", "dom", "es2018.promise"],
-    "target": "es2017", 
+    //"strict": true, //la pesadilla de incompatibilidad
+    "target": "es2017",
+    "watch": true  //esta bandera se activa para que los cambios se reflejen automaticamente
   
   },
   "compileOnSave": true,

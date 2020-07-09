@@ -19,7 +19,6 @@
   },
   "compileOnSave": true,
   "include": [
-    "src",
-    "../mi-Web-HTML5/src/MC-firebase"
+    "src"
   ]
 }

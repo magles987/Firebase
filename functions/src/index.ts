@@ -7,19 +7,23 @@ import * as functions from 'firebase-functions';
 
 import { FirebaseConfig } from "./fn-modules/firebase-config";
 import { FnResponseController } from './fn-modules/fn-response-ctrl';
-import { cors } from "cors";
 
-cors({
-    origin : true
-})
+//configuracion de CORS solo cuando se requieran apis 
+//externas basadas en express
+// import * as cors from 'cors';
+// const corsHandler = cors({origin: true});
+
 //================================================================
 
 export const helloWorld = functions.https.onRequest((request, response) => {
     //configuracion para evitar errores de permisos de CORS
-    response.set('Access-Control-Allow-Origin', "*");
-    response.set('Access-Control-Allow-Methods', 'GET, POST');
-
+    response.set('Access-Control-Allow-Origin', "*"); //OBLIGATORIA
+    // response.set('Access-Control-Allow-Methods', 'GET, POST');
+    // response.set('Access-Control-Allow-Headers', 'Content-Type');
+    // response.set('Access-Control-Max-Age', '3600');
+    
     response.send("Hello from Firebase!");
+    
 });
 
 //test:
@@ -38,6 +42,7 @@ export const holaMag = functions.https.onRequest(async (request, response) => {
     });
     response.send(d1);
 });
+
 
 export const FnProductoMeta = functions.https.onRequest((request, response) => {
     
